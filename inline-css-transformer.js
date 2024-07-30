@@ -50,13 +50,26 @@ root.walkDecls(decl => {
   }
 });
 
-// Apply the styles inline
-Object.keys(styleObject).forEach(selector => {
+// Function to apply styles to elements
+const applyStylesToElements = (selector, styles) => {
   const elements = document.querySelectorAll(selector);
-  const styles = resolveCSSVariables(styleObject[selector], cssVariables);
   elements.forEach(element => {
     Object.assign(element.style, styles);
   });
+};
+
+// Apply global styles first
+if (styleObject['*']) {
+  const globalStyles = resolveCSSVariables(styleObject['*'], cssVariables);
+  applyStylesToElements('*', globalStyles);
+}
+
+// Apply the remaining styles inline
+Object.keys(styleObject).forEach(selector => {
+  if (selector !== '*') {
+    const styles = resolveCSSVariables(styleObject[selector], cssVariables);
+    applyStylesToElements(selector, styles);
+  }
 });
 
 // Remove the <style> tag
