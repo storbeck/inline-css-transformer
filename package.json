@@ -1,0 +1,17 @@
+{
+  "name": "inline-css-transformer",
+  "version": "1.0.0",
+  "description": "A simple script to convert CSS styles in an HTML file to inline styles",
+  "main": "inline-css-transformer.js",
+  "bin": {
+    "inline-css-transformer": "./inline-css-transformer.js"
+  },
+  "scripts": {
+    "start": "node inline-css-transformer.js"
+  },
+  "dependencies": {
+    "jsdom": "^20.0.0",
+    "postcss": "^8.3.6",
+    "postcss-js": "^4.0.0"
+  }
+}
